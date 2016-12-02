@@ -1,8 +1,2 @@
-Juan
-cgc@asd.com
-kakaroto
-Martes
-Juan
-cgc@asd.com
-kakaroto
-Martes
+Juan;cgc@asd.com;kakaroto;Martes
+Juan;cgc@asd.com;kakaroto;Martes
