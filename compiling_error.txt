@@ -1,0 +1,50 @@
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.cpp:7:1: error: prototype for ‘Intern::Intern(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, double)’ does not match any in class ‘Intern’
+ Intern::Intern(string nombre ,string correo ,string contra , double salary): User(nombre , correo , contra){
+ ^~~~~~
+In file included from /home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.cpp:1:0:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.h:5:7: error: candidates are: Intern::Intern(const Intern&)
+ class Intern : public User{
+       ^~~~~~
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.h:10:6: error:                 Intern::Intern(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, int)
+      Intern(string,string,string,int);
+      ^~~~~~
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.cpp:3:1: error:                 Intern::Intern()
+ Intern::Intern(){
+ ^~~~~~
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.cpp: In member function ‘void Intern::setDaysWorked(int)’:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.cpp:16:11: error: ‘class Intern’ has no member named ‘salary’
+     this->salary = dias;
+           ^~~~~~
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.cpp: At global scope:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.cpp:19:8: error: prototype for ‘double Intern::getDaysWorked()’ does not match any in class ‘Intern’
+ double Intern::getDaysWorked(){
+        ^~~~~~
+In file included from /home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.cpp:1:0:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Intern.h:13:10: error: candidate is: int Intern::getDaysWorked()
+      int getDaysWorked();
+          ^~~~~~~~~~~~~
+In file included from /home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Admin.h:1:0,
+                 from /home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/main.cpp:2:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/User.h:5:7: error: redefinition of ‘class User’
+ class User{
+       ^~~~
+In file included from /home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/main.cpp:1:0:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/User.h:5:7: error: previous definition of ‘class User’
+ class User{
+       ^~~~
+In file included from /home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Manager.h:1:0,
+                 from /home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/main.cpp:3:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/User.h:5:7: error: redefinition of ‘class User’
+ class User{
+       ^~~~
+In file included from /home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/main.cpp:1:0:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/User.h:5:7: error: previous definition of ‘class User’
+ class User{
+       ^~~~
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Manager.cpp: In constructor ‘Manager::Manager(std::__cxx11::string, std::__cxx11::string, std::__cxx11::string, double)’:
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Manager.cpp:8:11: error: ‘class Manager’ has no member named ‘date’; did you mean ‘name’?
+     this->date = fecha;
+           ^~~~
+/home/carlos/Desktop/backup/ProgramasC++/CarlosCasco_Lab7/Manager.cpp:8:18: error: ‘fecha’ was not declared in this scope
+     this->date = fecha;
+                  ^~~~~
