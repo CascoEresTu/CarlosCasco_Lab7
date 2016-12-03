@@ -25,13 +25,24 @@ vector<User*> usuarios;
 User* logeado;
 
 int main(int argc, char const *argv[]) {
-    Admin* master = new Admin("Juan","cgc@asd.com","kakaroto", "Martes");
-    //usuarios.push_back(Juan);
+    cargarDatos();
+
+    Admin* a = new Admin("Juan","cgc@asd.com","numerito", "Martes");
+    Manager* b = new Manager("Jose","cgc@asd.com","numero", 300.0);
+    Intern* c = new Intern("Pedro","cgc@asd.com","number", 1);
+    Supervisor* d = new Supervisor("Juan","cgc@asd.com","kakaroto", 1);
+
+    //Estos son majes para que probes todo;
+    //PD: si no , se caga esta mierda;
+    usuarios.push_back(a);
+    usuarios.push_back(b);
+    usuarios.push_back(c);
+    usuarios.push_back(d);
+
     //usuarios.push_back(pJuan);
     std::cout << "hola" << std::endl;
     //guardarDatos(usuarios);
-    cargarDatos();
-    cargarDatos();
+
     ingresar();
     //std::cout << usuarios.at(1)->getName() << std::endl;
     //guardarDatos(usuarios);
@@ -90,38 +101,58 @@ void menuManager(){
         }
 
         if (op == 4) {
-                std::cout << "Lista de Usuarios" << std::endl;
-                for (size_t i = 0; i < usuarios.size(); i++) {
-                     std::cout<< i << ":  "<<  usuarios.at(i)->getName() << std::endl;
-                }
-                std::cout << " " cout<<"3. Crear Interno"<<endl;
-<< std::endl;
-        }
-
-        if (op == 5) {
-            int select;
-            std::cout << "Lista de Usuarios" << std::endl;
 
             for (size_t i = 0; i < usuarios.size(); i++) {
-                 std::cout << i << ":  "<<  usuarios.at(i)->getName() << std::endl;
+
+                 if (dynamic_cast<Intern*> (usuarios.at(i))!=NULL){
+                     Intern* temp = dynamic_cast<Intern*> (usuarios.at(i));
+                     cout  << i << " Interno: " ;
+                     cout<< temp->getName()<<";"<< temp->getEmail() <<";"<<temp->getPassword() << ";"<< temp->getDaysWorked() << endl;
+
+                 }
+
+                 if (dynamic_cast<Supervisor*> (usuarios.at(i))!=NULL){
+                     Supervisor* temp = dynamic_cast<Supervisor*> (usuarios.at(i));
+                     cout <<  i <<"  Supervisor: " ;
+                     cout<< temp->getName()<<";"<< temp->getEmail() <<";"<<temp->getPassword() << ";"<< temp->getEntradas() << endl;
+                 }
+
             }
 
-            std::cout << "" << std::endl;
+        }
+
+        if (op == 4) {
+            int select;
+
+            std::cout << "Lista de Internos y Supervisores" << std::endl;
+            for (size_t i = 0; i < usuarios.size(); i++) {
+
+                 if (dynamic_cast<Intern*> (usuarios.at(i))!=NULL){
+                     Intern* temp = dynamic_cast<Intern*> (usuarios.at(i));
+                     cout  << i << " Interno: " ;
+                     cout<< temp->getName()<<";"<< temp->getEmail() <<";"<<temp->getPassword() << ";"<< temp->getDaysWorked() << endl;
+                 }
+
+                 if (dynamic_cast<Supervisor*> (usuarios.at(i))!=NULL){
+                     Supervisor* temp = dynamic_cast<Supervisor*> (usuarios.at(i));
+                     cout <<  i <<"  Supervisor: " ;
+                     cout<< temp->getName()<<";"<< temp->getEmail() <<";"<<temp->getPassword() << ";"<< temp->getEntradas() << endl;
+                 }
+            }
+
             std::cout << "¿A quien desea eliminar?" << std::endl;
-            std::cin >> select;
-
-            if ( usuarios.at(select) == usuarios.at(0)){
-                std::cout << "No se pueden borrar administradores" << std::endl;
-            }
-
+            cin>>select;
 
             usuarios.erase(usuarios.begin() + select);
             std::cout << "" << std::endl;
+
+
         }
     }
         logeado = NULL;
-        login();
+        guardarDatos();
 
+        ingresar();
 
 
 
@@ -171,7 +202,9 @@ void menuInterno(){
         }
 }
     logeado = NULL;
-    login();
+    guardarDatos();
+
+    ingresar();
 }
 
 
@@ -224,7 +257,9 @@ void menuSupervisor(){
 
     }
         logeado = NULL;
-        login();
+        guardarDatos();
+
+        ingresar();
 }
 
 
@@ -259,7 +294,6 @@ void menuAdmin(){
             cin >> correo;
             std::cout << "Ingrese la contraseña: " << std::endl;
             cin >> contra;
-
 
             usuarios.push_back(new Supervisor(nombre,correo,contra,1) );
 
@@ -320,10 +354,10 @@ void menuAdmin(){
         }
     }
         logeado = NULL;
-        login();
+        guardarDatos();
+        ingresar();
 
 }
-
 
 
 
@@ -356,21 +390,20 @@ void ingresar(){
    }
 
 
-
    if (dynamic_cast<Admin*> (logeado)!=NULL){
-
+       menuAdmin();
    }
 
    if (dynamic_cast<Manager*> (logeado)!=NULL){
-
+       menuManager();
    }
 
    if (dynamic_cast<Intern*> (logeado)!=NULL){
-
+       menuInterno();
    }
 
    if (dynamic_cast<Supervisor*> (logeado)!=NULL){
-
+       menuSupervisor();
    }
 
 
