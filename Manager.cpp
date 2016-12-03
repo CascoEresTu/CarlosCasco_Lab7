@@ -9,6 +9,7 @@ Manager::Manager(string nombre ,string correo ,string contra , double sueldo): U
 }
 
 Manager::~Manager(){
+    std::cout << "adios manager" << std::endl;
 
 }
 

@@ -13,11 +13,89 @@
 #include<stdlib.h>
 
 using namespace std;
+void ingresar();
+void guardarDatos();
+void cargarDatos();
+void menuAdmin();
+void menuSupervisor();
+void menuInterno();
+void menuManager();
 
-int stringAint(string &numero);
+vector<User*> usuarios;
+User* logeado;
+
+int main(int argc, char const *argv[]) {
+    Admin* Juan = new Admin("Juan","cgc@asd.com","kakaroto", "Martes");
+    Admin* pJuan = new Admin("Juan","cgc@asd.com","kakaroto", "Martes");
+    //usuarios.push_back(Juan);
+    //usuarios.push_back(pJuan);
+    std::cout << "hola" << std::endl;
+    //guardarDatos(usuarios);
+    cargarDatos();
+    cargarDatos();
+    ingresar();
+    //std::cout << usuarios.at(1)->getName() << std::endl;
+    //guardarDatos(usuarios);
 
 
-void guardarDatos(vector<User*> usuarios ){
+
+
+    return 0;
+}
+
+
+void ingresar(){
+
+    while(true){
+       string nombre;
+       string pass;
+
+       std::cout << " Ingrese el nombre del usuario :" << std::endl;
+       cin>> nombre;
+       std::cout << " Ingrese la contraseña :" << std::endl;
+       cin >> pass;
+
+       bool verify = false;
+
+       for (int i = 0; i < usuarios.size(); i++) {
+           if (usuarios.at(i)->getPassword() == pass  && usuarios.at(i)->getName() == nombre ) {
+               verify = true;
+               logeado  = usuarios.at(i);
+           }
+       }
+
+       if (verify == true) {
+           std::cout << "El usuario ha ingresado con éxito" << std::endl;
+           break;
+       } else {
+           std::cout << "Intente de nuevo" << std::endl;
+       }
+   }
+
+
+
+   if (dynamic_cast<Admin*> (logeado)!=NULL){
+
+   }
+
+   if (dynamic_cast<Manager*> (logeado)!=NULL){
+
+   }
+
+   if (dynamic_cast<Intern*> (logeado)!=NULL){
+
+   }
+
+   if (dynamic_cast<Supervisor*> (logeado)!=NULL){
+
+   }
+
+
+}
+
+
+
+void guardarDatos( ){
 
     ofstream admin;
     ofstream manager;
@@ -72,13 +150,13 @@ void guardarDatos(vector<User*> usuarios ){
 
 }
 
-void cargarDatos(vector<User*> usuarios){
+void cargarDatos(){
 
 string token;
 //ifstream file("file.txt");
 
-
-    ifstream admin("Admins.txt");
+    ifstream admin;
+    admin.open("Admins.txt");
     ifstream manager("Managers.txt");
     ifstream intern("Interns.txt");
     ifstream supervisor("Supervisors.txt");
@@ -108,8 +186,12 @@ string token;
             getline(admin,correo,';');
             getline(admin,contra,';');
             getline(admin,fecha,';');
+
+
+            usuarios.push_back(new Admin(nombre,correo,contra,fecha));
         }
-        usuarios.push_back(new Admin(nombre,correo,contra,fecha));
+        //std::cout << nombre << std::endl;
+
 }
     admin.close();
 
@@ -195,42 +277,4 @@ string token;
     }
     supervisor.close();
 
-
-
-}
-
-
-int main(int argc, char const *argv[]) {
-    vector <User*> usuarios;
-    Admin* Juan = new Admin("Juan","cgc@asd.com","kakaroto", "Martes");
-    Admin* pJuan = new Admin("Juan","cgc@asd.com","kakaroto", "Martes");
-
-
-    usuarios.push_back(Juan);
-    usuarios.push_back(pJuan);
-
-    std::cout << "hola" << std::endl;
-    guardarDatos(usuarios);
-    cargarDatos(usuarios);
-
-    return 0;
-}
-
-
-int stringAint(string &numero){
-    if (numero.length()==1){
-        return numero[0] - 48;
-    }else {
-        int asd = numero.length()-1 ;
-        int suma = 0 ;
-
-        for (size_t i = 0; i < numero.length(); i++) {
-            if(numero[i] != '\0'){
-                suma+=  (numero[i] - 48) * pow(10,asd);
-                asd--;
-            }
-        }
-        std::cout << suma << std::endl;
-        return suma;
-    }
 }
